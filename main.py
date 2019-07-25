@@ -11,7 +11,9 @@ class music_player():
         music_list1=[]
         for p in os.listdir(music_path):
             p = p.split('.')
-            music_list1.append(p[0])
+            if p[1] == 'mp3':
+                 music_list1.append(p[0])
+        #print(music_list1)
         return music_list1
 
     def play(self,music_name):
@@ -30,7 +32,7 @@ class music_player():
             title = afile.tags['TIT2'].text[0]   #标题
             print('作者：{}\n标题:{}'.format(author,title))
             lentime = MP3(play_path)
-            print("歌曲时长：%.3f 分钟"%(lentime.info.length/60))
+            print("歌曲时长：%.3f 分钟"%(lentime.info.length/60)) #获取歌曲时长
         else :
             print("暂无歌曲信息！")
     
